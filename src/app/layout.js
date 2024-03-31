@@ -1,17 +1,26 @@
-import { Inter } from 'next/font/google'
+import ChakraProvider from "@/components/ChakraProvider";
+import { SearchProvider } from "@/context/SearchContext";
+import { UserProvider } from "@/context/UserContext";
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Next App',
-  description: 'Next.js starter app',
+  title: 'movie app',
+  description: "This is my new movie app. I'm web developer you can contact me from this website.",
 }
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body >
+        <UserProvider>
+          <ChakraProvider>
+            <SearchProvider>
+              {children}
+            </SearchProvider>
+          </ChakraProvider>
+        </UserProvider>
+      </body>
     </html>
   )
-}
+} 

@@ -1,0 +1,45 @@
+
+import NavLinks from './NavLinks'
+import Link from 'next/link'
+import Image from 'next/image'
+import Links from './Links'
+import ToggleDropdown from './ToggleDropdown'
+import SearchInput from '../SearchInput'
+
+
+const Nav = () => {
+  const _links = Links.filter(link => link.title == 'Home' || link.title == 'About')
+  return (
+    <div className='flex items-center justify-between  relative h-14 bg-slate-50 px-5 md:px-6'>
+      <div className='flex items-center gap-10'>
+        <Link href="/">
+          <div className='flex flex-col w-[40px]  py-2'>
+            <Image
+              src="/assets/crown.svg"
+              width={37}
+              height={37}
+              alt='logo'
+              className='w[37px] h-[37px]'
+            />
+            <p className='text-xs mt-[-3px]' >
+              movies
+            </p>
+          </div>
+        </Link>
+        <SearchInput />
+      </div>
+      <div className='flex items-center gap-5'>
+        <nav className='flex gap-3 text-zinc-950  text-sm  sm:text-base  md:text-lg'>
+          {
+            _links.map(link => <NavLinks key={link.title} link={link} />)
+          }
+        </nav>
+        <ToggleDropdown />
+      </div>
+
+
+    </div>
+  )
+}
+
+export default Nav
