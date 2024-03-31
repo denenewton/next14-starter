@@ -1,3 +1,5 @@
+'use client'
+
 import Nav from "@/components/navbar/Nav"
 
 const page = () => {

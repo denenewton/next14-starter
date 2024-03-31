@@ -1,3 +1,5 @@
+'use client'
+
 import NavLinks from './NavLinks'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -5,10 +7,17 @@ import LinksNav from './Links'
 import ToggleDropdown from './ToggleDropdown'
 import SearchInput from '../SearchInput'
 import GenreList from '../genre/GenreList'
+import useSearchContext from '@/hooks/useSearch'
 
 
 const Nav = () => {
+  const { setSearchGenre, setSearchText } = useSearchContext();
   const _links = LinksNav
+
+  const handleCleaner = () => {
+    setSearchGenre('');
+    setSearchText('');
+  }
 
   return (
     <div className='container-header'>
@@ -24,7 +33,7 @@ const Nav = () => {
       <div className="w-full h-full bg-gradient-to-t from-white via-transparent to-black absolute top-0 left-0 "></div>
       <div className='w-full backdrop-blur-[1px] bg-black/0 text-slate-50 mx-auto flex items-center justify-between h-[75px] mt-[-19px] rounded-b-lg px-5 md:px-10 absolute top-5 left-0 z-10'>
         <div className='flex items-center gap-10'>
-          <Link href="/">
+          <Link href="/" onClick={handleCleaner}>
             <div className='flex flex-col w-[40px]  py-2'>
               <Image
                 src="/assets/crown.svg"

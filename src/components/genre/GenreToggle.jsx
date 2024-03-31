@@ -7,11 +7,10 @@ import Link from "next/link";
 
 const GenreToggle = () => {
   const [toggleDropdown, setToggleDropdown] = useState(false)
-  const { searchGenre, setSearchGenre } = useSearchContext();
+  const { searchGenre, setSearchGenre, setSearchText } = useSearchContext();
 
   const handleSearch = (genre) => {
-    if (genre === "All Genres")
-      setSearchGenre('')
+    if (genre === "All Genres") { setSearchGenre(''); setSearchText(''); }
     setSearchGenre(genre);
     setToggleDropdown(false);
   }

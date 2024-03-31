@@ -2,41 +2,29 @@
 
 import InfiniteScroll from "react-infinite-scroll-component";
 import useSearchContext from "@/hooks/useSearch";
-import { usePathname } from "next/navigation";
 import urlBilder from "@/service/urlBilder"
 import useMovies from "@/hooks/useMovies"
-import { useEffect } from "react";
 import Image from "next/image"
 import Link from "next/link"
 import { Spinner } from "@chakra-ui/spinner";
 import { Text } from "@chakra-ui/layout";
 import React from "react";
+import TitleGridMovie from "./TitleGridMovie";
 
 
 const MovieGrid = () => {
-  const { searchGenre, searchText, setSearchGenre, setSearchText } = useSearchContext()
+  const { searchGenre, searchText } = useSearchContext()
   const query = { genre: searchGenre, title: searchText, page: 1, perPage: 12 };
   const {
     data,
     error,
     fetchNextPage,
     hasNextPage,
-    // isFetching,
-    // isFetchingNextPage,
-    // status,
-    // isLoading,
   } = useMovies(query);
-  const pathname = usePathname()
 
   const fetchMovieCount =
     data?.pages.reduce((total, page) => total + page?.length, 0) || 0;
 
-  useEffect(() => {
-    if (pathname === '/') {
-      setSearchGenre('');
-      setSearchText('')
-    }
-  }, [pathname])
 
   if (error) {
     console.log(error);
@@ -50,18 +38,8 @@ const MovieGrid = () => {
       endMessage={<Text></Text>}
       loader={<Spinner />}
     >
-      {
-        pathname !== '/' && (
-          <h1 className="text-3xl text-center font-semibold mb-5">
-            {
-              searchGenre && searchText ? searchGenre + ': ' + searchText :
-                searchGenre === 'All Genres' ? 'Movies' :
-                  searchGenre ? searchGenre + ': ' + searchText :
-                    searchText ? 'Search: ' + searchText : 'Movies'
-            }
-          </h1>
-        )
-      }
+      <TitleGridMovie />
+
       <div className="grid-container">
         {data?.pages.map((page, index) => (
           <React.Fragment key={index}>

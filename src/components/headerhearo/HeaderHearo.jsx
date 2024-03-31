@@ -14,6 +14,7 @@ const HeaderHearo = ({ children, data }) => {
           width={10000}
           height={10000}
           alt={data.name || data.title}
+          priority={true}
           className='w-full h-full  object-cover mix-blend-overlay absolute'
         />
       </div>
