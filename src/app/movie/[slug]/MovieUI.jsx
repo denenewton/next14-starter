@@ -20,7 +20,11 @@ const MovieUI = ({ movie }) => {
 
       <div className='single-movie-container'>
         <div className="flex flex-col items-center justify-center max-w-[700px]  mx-auto">
-          <h1 className='text-4xl text-slate-700'>{movie?.title} <span>({movie?.release_date.split('-')[0]})</span></h1>
+          <h1 className='text-4xl text-slate-700'>
+            <Link href={movie?.url_movie}>
+              {movie?.title} <span>({movie?.release_date.split('-')[0]})</span>
+            </Link>
+          </h1>
           <p className='tracking-wide flex itmes-center gap-4'>{movie?.release_date.split('-').join('/')}
             <span className='justify-self-auto '>&bull;</span>
             <span className='flex gap-0'>{genres} </span></p>
