@@ -163,7 +163,7 @@ export async function getPersonMaped(id) {
 ///////////////////////////////////////////////////////////////////////////////////
 export async function getMovieByTitle(title, Movie) {
   const gender = [1, 2];
-  const popularity = 10;
+  const popularity = 5;
   return await Movie.aggregate([
     { $match: { title: { $regex: title, $options: "i" } } },
     { $sort: { title: 1 } },
