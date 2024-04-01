@@ -3,10 +3,8 @@ import urlSlugReverse from '@/service/urlSlugReverse'
 import MovieUI from './MovieUI';
 
 async function getMovie(title) {
-  let _url = title.split('-')
-  let __url = _url.join(' ').includes(',') ? _url.split(',') : _url
-      __url = _url.join(' ').includes('&') ? _url.split('&') : _url
-  const _title = __url.join(' ')   //urlSlugReverse(title)
+  
+  const _title = urlSlugReverse(title)
   try {
     const movies = await Axios.post(
       "/graphql", queryData(GUET_MOVIES_BY_TITLE, { title: _title }));
