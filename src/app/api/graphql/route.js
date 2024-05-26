@@ -19,7 +19,7 @@ const yogaApp = createYoga({
   context: { Movie, Person },
   graphqlEndpoint: "/api/graphql",
   cors: {
-    origin: ['http://localhost:4000','http://localhost:3000' ],
+    origin: '*',
     credentials: true,
     allowedHeaders: ['X-Custom-Header'],
     methods: ['POST']
