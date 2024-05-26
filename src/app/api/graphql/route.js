@@ -26,7 +26,7 @@ const yogaApp = createYoga({
       allowedHeaders: ['X-Custom-Header'],
       methods: ['POST']
     }
-  }
+  },
   fetchAPI: { Response },
 });
 
