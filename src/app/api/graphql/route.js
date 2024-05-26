@@ -18,7 +18,15 @@ const yogaApp = createYoga({
   schema,
   context: { Movie, Person },
   graphqlEndpoint: "/api/graphql",
-  cors: false,
+  cors: (request) => {
+    const requestOrigin = request.headers.get('origin')
+    return {
+      origin: requestOrigin,
+      credentials: true,
+      allowedHeaders: ['X-Custom-Header'],
+      methods: ['POST']
+    }
+  }
   fetchAPI: { Response },
 });
 
