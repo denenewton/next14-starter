@@ -22,7 +22,7 @@ const yogaApp = createYoga({
     origin: '*',
     allowedHeaders: ['X-Custom-Header'],
     methods: ['POST']
-  }
+  },
   fetchAPI: { Response },
 });
 
