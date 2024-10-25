@@ -39,12 +39,10 @@ export const PersonPayload = {
     if (obj.errors) {
       return "Error";
     }
-    if (obj.biography) {
+    if ( obj.biography || obj.gender) {
       return "Person";
     }
-    if (obj.imdb_id) {
-      return "Person";
-    }
+    
     return null;
   },
 };
