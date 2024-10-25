@@ -146,18 +146,22 @@ export async function createMovieById(id, url_movie, Movie) {
 ///////////////////////////////////////////////////////////////////////////////////
 export async function getPersonMaped(id) {
   const url = `https://api.themoviedb.org/3/person/${id}?language=en-US`;
-  var person = new Object();
 
-  const res = await fetch(url, options);
-  const json = await res.json();
-  const profile_path =
-    "https://image.tmdb.org/t/p/original" + json.profile_path;
-  person = {
-    ...json,
-    profile_path: profile_path,
-  };
-
-  return person;
+    const res = await fetch(url, options);
+    var json = await res.json();
+    
+    if (json?.success === false) {
+      console.log(json);
+      return null
+     }
+    else{
+      console.log(json);
+      const profile_path = "https://image.tmdb.org/t/p/original" + json.profile_path;
+      return  {
+      ...json,
+      profile_path: profile_path,
+      }
+    }
 }
 ////////////////GET//MOVIE//BY//TITLE//////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////

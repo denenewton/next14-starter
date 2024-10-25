@@ -9,6 +9,8 @@ import NavButtonBack from '@/components/headerhearo/NavButton';
 
 const PersonUI = ({ params }) => {
   const { data } = usePerson(parseInt(params.id_person), parseInt(params.id_movie));
+  console.log(data);
+  
   if (data?.errors) {
     return <>
     <p>this person doesn't exist</p>

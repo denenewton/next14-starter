@@ -117,6 +117,13 @@ export const Query = {
 
       const person = await getPersonMaped(id);
 
+      if (person === null) {
+        return {
+          __typename: "Error",
+          errors: "Sorry! something goes wrong! this person does not exist. "
+        };
+      }
+
       await Person.collection.insertOne({
         ...person,
         id_movie: [id_movie],

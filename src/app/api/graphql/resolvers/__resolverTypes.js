@@ -39,7 +39,16 @@ export const PersonPayload = {
     if (obj.errors) {
       return "Error";
     }
-    if ( obj.biography || obj.gender) {
+    if (
+      obj.imdb_id
+      || obj.gender
+      || obj.biography
+      || obj.place_of_birth 
+      || obj.birthday
+      || obj.homepage
+      || obj.deathday
+      || obj.profile_path 
+    ) {
       return "Person";
     }
     
