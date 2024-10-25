@@ -8,15 +8,20 @@ import NavButtonBack from '@/components/headerhearo/NavButton';
 
 
 const PersonUI = ({ params }) => {
-
   const { data } = usePerson(parseInt(params.id_person), parseInt(params.id_movie));
+  if (data?.errors) {
+    return <>
+    <p>this person doesn't exist</p>
+    </>
+  }
+  
   //const { userDoc, currentUser } = useAuth();
   return (
     <>
       {
         data && (
 
-          <HeaderHearo data={data}>
+          <HeaderHearo background={"https://image.tmdb.org/t/p/original/"+params.background}>
             <NavButtonBack />
             <div className='single-movie-container'>
               <div className='w-full h-full flex flex-col gap-[5rem] '>
@@ -28,7 +33,7 @@ const PersonUI = ({ params }) => {
                         src={data?.profile_path}
                         width={100}
                         height={100}
-                        alt={data.name}
+                        alt={'profile'}
                         className='w-full h-fit rounded-lg object-cover'
                       />
                     </div>
@@ -36,11 +41,11 @@ const PersonUI = ({ params }) => {
                     <div className="flex mt-10">
                       <div className='w-[200px] sm:flex hidden'></div>
                       <div className='w-full flex flex-col items-center justify-center   mx-auto'>
-                        <h1 className='text-4xl text-slate-700'>{data.name} <span>({data.gender == 2 ? 'Actor' : 'Actress'})</span></h1>
+                        <h1 className='text-4xl text-slate-700'>{data?.name} <span>({data?.gender == 2 ? 'Actor' : 'Actress'})</span></h1>
                         <p className='tracking-wide flex items-center gap-4'>
-                          <span>{data.place_of_birth}</span>
+                          <span>{data?.place_of_birth}</span>
                           <span className='justify-self-auto '>&bull;</span>
-                          <span> {data.birthday.split('-').join('/')}</span>
+                          <span> {data?.birthday?.split('-').join('/')}</span>
                         </p>
 
                         <p className='tracking-wide flex items-center gap-4'>
@@ -58,7 +63,7 @@ const PersonUI = ({ params }) => {
                         src={data?.profile_path}
                         width={100}
                         height={100}
-                        alt={data.name}
+                        alt={'profile'}
                         className='w-[200px] h-fit rounded-lg object-cover float-left mt-[-170px] mr-5 sm:flex hidden'
                       />
                       {data?.biography}

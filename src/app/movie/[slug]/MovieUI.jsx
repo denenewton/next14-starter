@@ -10,11 +10,11 @@ import NavButtonBack from '@/components/headerhearo/NavButton';
 const MovieUI = ({ movie }) => {
   const genres = movie?.genres.map(genre => genre.name).join(', ');
   const id_movie = movie?.id;
-
+  const background = movie.url_image
 
   return (
 
-    <HeaderHearo data={movie}>
+    <HeaderHearo background={background.replace('/w500/', '/original/')}>
       <NavButtonBack />
       <NavButtonNext />
 
@@ -50,7 +50,7 @@ const MovieUI = ({ movie }) => {
                     className='w-full h-full object-cover rounded-lg' />
 
                   <div className="px-2 py-4">
-                    <Link href={`/person/${id_movie}/${cast?.id}`}>
+                    <Link href={`/person/${cast?.id}/${id_movie}/${background.split('/w500/')[1]}`}>
                       <p className="font-simibold text-md  hover:text-gray-500 font-medium">{cast?.name}</p>
                       <span className='text-xs leading-none font-light mt-[-1px]'>{cast?.character}</span>
                     </Link>
